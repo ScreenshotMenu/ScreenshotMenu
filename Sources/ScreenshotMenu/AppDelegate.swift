@@ -35,11 +35,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Screenshot Actions
 
     @objc func windowToFile() {
-        showSavePanelAndCapture(arguments: ["-w"])
+        captureToFileAndSave(arguments: ["-w"])
     }
 
     @objc func areaToFile() {
-        showSavePanelAndCapture(arguments: ["-s"])
+        captureToFileAndSave(arguments: ["-s"])
     }
     @objc func windowToClipboard() {
         runScreencapture(["-wc"])
@@ -77,27 +77,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return "Screenshot \(formatter.string(from: Date())).png"
     }
 
-    private func showSavePanelAndCapture(arguments: [String]) {
+    private func captureToFileAndSave(arguments: [String]) {
+        let tempURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("screenshot_\(ProcessInfo.processInfo.globallyUniqueString).png")
+
+        // Capture to temp file first (screen is clean)
+        runScreencapture(arguments + [tempURL.path], wait: true)
+
+        // If user cancelled the capture, no file exists
+        guard FileManager.default.fileExists(atPath: tempURL.path) else { return }
+
         let panel = NSSavePanel()
         panel.nameFieldStringValue = defaultFilename()
         panel.allowedContentTypes = [.png]
 
-        guard panel.runModal() == .OK, let url = panel.url else { return }
+        guard panel.runModal() == .OK, let url = panel.url else {
+            try? FileManager.default.removeItem(at: tempURL)
+            return
+        }
 
-        runScreencapture(arguments + [url.path])
+        try? FileManager.default.moveItem(at: tempURL, to: url)
 
         if UserDefaults.standard.bool(forKey: "openInPreview") {
-            // Small delay to let screencapture finish writing
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                NSWorkspace.shared.open(url)
-            }
+            NSWorkspace.shared.open(url)
         }
     }
 
-    private func runScreencapture(_ arguments: [String]) {
+    private func runScreencapture(_ arguments: [String], wait: Bool = false) {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/sbin/screencapture")
         process.arguments = arguments
         try? process.run()
+        if wait {
+            process.waitUntilExit()
+        }
     }
 }
