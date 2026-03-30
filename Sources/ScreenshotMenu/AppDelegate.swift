@@ -1,4 +1,5 @@
 import Cocoa
+import UniformTypeIdentifiers
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem!
@@ -32,8 +33,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Screenshot Actions
 
-    @objc func windowToFile() {}
-    @objc func areaToFile() {}
+    @objc func windowToFile() {
+        showSavePanelAndCapture(arguments: ["-w"])
+    }
+
+    @objc func areaToFile() {
+        showSavePanelAndCapture(arguments: ["-s"])
+    }
     @objc func windowToClipboard() {
         runScreencapture(["-wc"])
     }
@@ -48,6 +54,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func toggleOpenInPreview(_ sender: NSMenuItem) {}
 
     // MARK: - Screencapture
+
+    private func defaultFilename() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd 'at' HH.mm.ss"
+        return "Screenshot \(formatter.string(from: Date())).png"
+    }
+
+    private func showSavePanelAndCapture(arguments: [String]) {
+        let panel = NSSavePanel()
+        panel.nameFieldStringValue = defaultFilename()
+        panel.allowedContentTypes = [.png]
+
+        guard panel.runModal() == .OK, let url = panel.url else { return }
+
+        runScreencapture(arguments + [url.path])
+
+        if UserDefaults.standard.bool(forKey: "openInPreview") {
+            // Small delay to let screencapture finish writing
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                NSWorkspace.shared.open(url)
+            }
+        }
+    }
 
     private func runScreencapture(_ arguments: [String]) {
         let process = Process()
