@@ -34,11 +34,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func windowToFile() {}
     @objc func areaToFile() {}
-    @objc func windowToClipboard() {}
-    @objc func areaToClipboard() {}
+    @objc func windowToClipboard() {
+        runScreencapture(["-wc"])
+    }
+
+    @objc func areaToClipboard() {
+        runScreencapture(["-sc"])
+    }
 
     // MARK: - Settings
 
     @objc func toggleAutolaunch(_ sender: NSMenuItem) {}
     @objc func toggleOpenInPreview(_ sender: NSMenuItem) {}
+
+    // MARK: - Screencapture
+
+    private func runScreencapture(_ arguments: [String]) {
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/sbin/screencapture")
+        process.arguments = arguments
+        try? process.run()
+    }
 }
