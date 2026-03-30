@@ -1,4 +1,5 @@
 import Cocoa
+import ServiceManagement
 import UniformTypeIdentifiers
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -50,8 +51,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Settings
 
-    @objc func toggleAutolaunch(_ sender: NSMenuItem) {}
-    @objc func toggleOpenInPreview(_ sender: NSMenuItem) {}
+    @objc func toggleAutolaunch(_ sender: NSMenuItem) {
+        let newValue = sender.state != .on
+        UserDefaults.standard.set(newValue, forKey: "autolaunch")
+        sender.state = newValue ? .on : .off
+
+        if newValue {
+            try? SMAppService.mainApp.register()
+        } else {
+            try? SMAppService.mainApp.unregister()
+        }
+    }
+
+    @objc func toggleOpenInPreview(_ sender: NSMenuItem) {
+        let newValue = sender.state != .on
+        UserDefaults.standard.set(newValue, forKey: "openInPreview")
+        sender.state = newValue ? .on : .off
+    }
 
     // MARK: - Screencapture
 
