@@ -1,4 +1,5 @@
 import Cocoa
+import ServiceManagement
 import UniformTypeIdentifiers
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -7,6 +8,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var lastScreenshotItem: NSMenuItem!
     private var previewItem: NSMenuItem!
     private var finderItem: NSMenuItem!
+    private var autolaunchItem: NSMenuItem!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -49,7 +51,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(silentItem)
 
         let autolaunchItem = NSMenuItem(title: "Autolaunch", action: #selector(toggleAutolaunch(_:)), keyEquivalent: "")
-        autolaunchItem.state = UserDefaults.standard.bool(forKey: "autolaunch") ? .on : .off
+        autolaunchItem.state = SMAppService.mainApp.status == .enabled ? .on : .off
+        self.autolaunchItem = autolaunchItem
         menu.addItem(autolaunchItem)
 
         previewItem = NSMenuItem(title: "Open in Preview", action: #selector(selectOpenInPreview(_:)), keyEquivalent: "")
@@ -63,6 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
 
+        menu.delegate = self
         statusItem.menu = menu
     }
 
@@ -123,23 +127,47 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         sender.state = newValue ? .on : .off
     }
 
+    /// Login-item registration, asked of the system rather than remembered.
+    ///
+    /// This used to write a LaunchAgent plist and tick the menu item from a
+    /// UserDefaults flag. Nothing reconciled the two, so any drift -- the app
+    /// moving, the plist going away, the write failing -- left the checkbox
+    /// claiming an autolaunch that was not registered. The plist also pinned
+    /// Bundle.main.bundlePath at the moment it was written, which broke
+    /// silently as soon as the app was moved.
     @objc func toggleAutolaunch(_ sender: NSMenuItem) {
-        let newValue = sender.state != .on
-        UserDefaults.standard.set(newValue, forKey: "autolaunch")
-        sender.state = newValue ? .on : .off
-
-        let plistPath = NSHomeDirectory() + "/Library/LaunchAgents/com.local.ScreenshotMenu.plist"
-        if newValue {
-            let appPath = Bundle.main.bundlePath
-            let plist: [String: Any] = [
-                "Label": "com.local.ScreenshotMenu",
-                "ProgramArguments": [appPath + "/Contents/MacOS/ScreenshotMenu"],
-                "RunAtLoad": true
-            ]
-            (plist as NSDictionary).write(toFile: plistPath, atomically: true)
-        } else {
-            try? FileManager.default.removeItem(atPath: plistPath)
+        let service = SMAppService.mainApp
+        do {
+            if service.status == .enabled {
+                try service.unregister()
+            } else {
+                try service.register()
+            }
+        } catch {
+            report("Could not change the autolaunch setting", error.localizedDescription)
         }
+        refreshAutolaunchState()
+
+        // Registering succeeds while the login item stays off if the user has
+        // denied it in System Settings, so say where to turn it on.
+        if service.status == .requiresApproval {
+            report("Autolaunch needs your approval",
+                   "macOS is holding this login item. Enable ScreenshotMenu in "
+                   + "System Settings > General > Login Items & Extensions.")
+        }
+    }
+
+    private func refreshAutolaunchState() {
+        autolaunchItem.state = SMAppService.mainApp.status == .enabled ? .on : .off
+    }
+
+    private func report(_ message: String, _ detail: String) {
+        let alert = NSAlert()
+        alert.alertStyle = .informational
+        alert.messageText = message
+        alert.informativeText = detail
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
     }
 
     @objc func selectOpenInPreview(_ sender: NSMenuItem) {
@@ -227,5 +255,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if wait {
             process.waitUntilExit()
         }
+    }
+}
+
+extension AppDelegate: NSMenuDelegate {
+    func menuWillOpen(_ menu: NSMenu) {
+        refreshAutolaunchState()
     }
 }
