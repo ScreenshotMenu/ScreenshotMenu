@@ -5,8 +5,9 @@ keyboard shortcuts to memorise.
 
 It is a thin native wrapper around `screencapture`, the screenshot tool that
 already ships with macOS. Under 300 lines of Swift, no dependencies, no
-telemetry, no network code, no Accessibility permission. Signed with a Developer
-ID and notarised by Apple.
+telemetry, no network code, no Accessibility permission. A universal binary that
+runs natively on Apple Silicon and Intel, signed with a Developer ID and
+notarised by Apple.
 
 <img src="web/assets/menu-screenshot.png" width="360" alt="The ScreenshotMenu menu bar menu, showing capture modes and settings">
 
@@ -101,7 +102,9 @@ confuse and you deserve to know which one you are downloading.
 ## Building
 
 Requires macOS 13 or later and a Swift toolchain (Xcode or the Command Line
-Tools).
+Tools). `make build` produces a universal binary; note that SwiftPM leaves the
+merged result in `.build/apple/Products/Release`, not `.build/release`, which
+only ever holds the host slice.
 
 ```sh
 make bundle        # build ScreenshotMenu.app

@@ -1,5 +1,7 @@
 APP_NAME = ScreenshotMenu
-BUILD_DIR = .build/release
+# Universal build output; SwiftPM puts the merged binary here, not in
+# .build/release, which only ever holds the host slice.
+BUILD_DIR = .build/apple/Products/Release
 APP_BUNDLE = $(APP_NAME).app
 DMG = $(APP_NAME).dmg
 
@@ -17,7 +19,7 @@ DMG_ICON_SIZE = 128
 .PHONY: build bundle run clean install sign notarize staple release dmg dmg-bg
 
 build:
-	swift build -c release
+	swift build -c release --arch arm64 --arch x86_64
 
 bundle: build
 	rm -rf $(APP_BUNDLE)
