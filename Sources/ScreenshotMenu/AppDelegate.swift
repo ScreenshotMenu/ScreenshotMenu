@@ -4,6 +4,9 @@ import UniformTypeIdentifiers
 class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem!
     private var lastScreenshotURL: URL?
+    // changeCount of the pasteboard right after we put a capture on it.
+    // If it still matches, the clipboard is untouched and holds our image.
+    private var lastClipboardChangeCount: Int?
     private var lastScreenshotItem: NSMenuItem!
     private var previewItem: NSMenuItem!
     private var finderItem: NSMenuItem!
@@ -111,8 +114,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Last Screenshot
 
     @objc func openLastScreenshot() {
-        guard let url = lastScreenshotURL, FileManager.default.fileExists(atPath: url.path) else { return }
-        NSWorkspace.shared.open(url)
+        if let url = lastScreenshotURL, FileManager.default.fileExists(atPath: url.path) {
+            NSWorkspace.shared.open(url)
+            return
+        }
+
+        // The last capture went to the clipboard, so there is no file to
+        // reopen -- re-materialise it, but only if the clipboard is still ours.
+        guard let expected = lastClipboardChangeCount else { return }
+        let pasteboard = NSPasteboard.general
+        guard pasteboard.changeCount == expected,
+              let image = NSImage(pasteboard: pasteboard) else {
+            reportClipboardGone()
+            return
+        }
+        openDetached(image)
+    }
+
+    private func reportClipboardGone() {
+        let alert = NSAlert()
+        alert.alertStyle = .informational
+        alert.messageText = "Nothing to open"
+        alert.informativeText = "The last screenshot was copied to the clipboard, "
+            + "but the clipboard has changed since then, so there is nothing left to open."
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
     }
 
     // MARK: - Settings
@@ -161,26 +187,123 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Clipboard Capture
 
     private func captureToClipboard(arguments: [String]) {
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/sbin/screencapture")
-        process.arguments = arguments + silentArgs()
-        try? process.run()
+        guard UserDefaults.standard.string(forKey: "afterSave") == "preview" else {
+            // A cancelled selection (Esc) leaves the clipboard untouched, so
+            // only claim the capture if the pasteboard actually moved.
+            let before = NSPasteboard.general.changeCount
+            let process = Process()
+            process.executableURL = URL(fileURLWithPath: "/usr/sbin/screencapture")
+            process.arguments = arguments + silentArgs()
+            process.terminationHandler = { [weak self] _ in
+                DispatchQueue.main.async {
+                    let pasteboard = NSPasteboard.general
+                    guard pasteboard.changeCount != before,
+                          NSImage(pasteboard: pasteboard) != nil else { return }
+                    self?.rememberClipboardCapture()
+                }
+            }
+            try? process.run()
+            return
+        }
 
-        if UserDefaults.standard.string(forKey: "afterSave") == "preview" {
-            process.terminationHandler = { _ in
-                let script = NSAppleScript(source: """
-                    tell application "Preview" to activate
-                    delay 0.5
-                    tell application "System Events"
-                        tell process "Preview"
-                            click menu item "New from Clipboard" of menu "File" of menu bar 1
-                        end tell
-                    end tell
-                    """)
-                var error: NSDictionary?
-                script?.executeAndReturnError(&error)
-                if let error = error {
-                    NSLog("AppleScript error: \(error)")
+        // "to Clipboard" plus "Open in Preview". There is no file to hand
+        // Preview, and no public API asks another app to paste -- doing that
+        // needs UI scripting, which costs the Accessibility permission.
+        // Instead: capture to a scratch file, put the image on the clipboard
+        // ourselves, hand Preview the file, then unlink it. Preview keeps the
+        // open document but loses its backing path, so Save falls through to
+        // Save As, exactly as an untitled document would.
+        sweepScratch()
+        let url = scratchURL()
+
+        // drop -c so screencapture writes a file rather than the clipboard
+        let fileArgs = arguments
+            .map { $0.replacingOccurrences(of: "c", with: "") }
+            .filter { $0 != "-" && !$0.isEmpty }
+        runScreencapture(fileArgs + silentArgs() + [url.path], wait: true)
+
+        guard let image = NSImage(contentsOf: url) else { return }
+
+        let pasteboard = NSPasteboard.general
+        pasteboard.clearContents()
+        pasteboard.writeObjects([image])
+        rememberClipboardCapture()
+
+        openDetached(url, deletingAfterOpen: true)
+    }
+
+    private func rememberClipboardCapture() {
+        lastClipboardChangeCount = NSPasteboard.general.changeCount
+        lastScreenshotURL = nil
+        lastScreenshotItem.isEnabled = true
+    }
+
+    // MARK: - Detached Preview
+
+    /// Scratch files live in their own directory so sweeping is unambiguous.
+    private func scratchDirectory() -> URL {
+        let dir = URL(fileURLWithPath: NSTemporaryDirectory())
+            .appendingPathComponent("ScreenshotMenu", isDirectory: true)
+        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        return dir
+    }
+
+    private func scratchURL() -> URL {
+        scratchDirectory().appendingPathComponent(defaultFilename())
+    }
+
+    /// Remove leftovers from captures whose unlink never landed.
+    private func sweepScratch() {
+        let dir = scratchDirectory()
+        let files = (try? FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil)) ?? []
+        for file in files {
+            try? FileManager.default.removeItem(at: file)
+        }
+    }
+
+    private func openDetached(_ image: NSImage) {
+        guard let tiff = image.tiffRepresentation,
+              let rep = NSBitmapImageRep(data: tiff),
+              let png = rep.representation(using: .png, properties: [:]) else { return }
+        sweepScratch()
+        let url = scratchURL()
+        guard (try? png.write(to: url)) != nil else { return }
+        openDetached(url, deletingAfterOpen: true)
+    }
+
+    /// Seconds-resolution access time, or 0 if the file is gone.
+    private func accessTime(of url: URL) -> TimeInterval {
+        var info = stat()
+        guard stat(url.path, &info) == 0 else { return 0 }
+        return Double(info.st_atimespec.tv_sec) + Double(info.st_atimespec.tv_nsec) / 1e9
+    }
+
+    private func openDetached(_ url: URL, deletingAfterOpen: Bool) {
+        guard let preview = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.apple.Preview") else {
+            NSWorkspace.shared.open(url)
+            return
+        }
+        let configuration = NSWorkspace.OpenConfiguration()
+        configuration.activates = true
+
+        let baseline = accessTime(of: url)
+        NSWorkspace.shared.open([url], withApplicationAt: preview, configuration: configuration) { [weak self] _, error in
+            guard deletingAfterOpen, error == nil, let self = self else { return }
+
+            // The completion handler only means the open request was
+            // delivered; Preview reads the file a moment later. Unlinking
+            // before that read makes the open fail outright -- measured
+            // reliably at 0ms, safe from ~100ms. So wait for the read itself
+            // rather than guessing an interval: the access time moving is the
+            // signal. Anything never read is left to sweepScratch().
+            DispatchQueue.global(qos: .utility).async {
+                let deadline = Date().addingTimeInterval(5)
+                while Date() < deadline {
+                    if self.accessTime(of: url) > baseline {
+                        try? FileManager.default.removeItem(at: url)
+                        return
+                    }
+                    Thread.sleep(forTimeInterval: 0.05)
                 }
             }
         }
@@ -217,6 +340,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         try? FileManager.default.moveItem(at: tempURL, to: url)
 
         lastScreenshotURL = url
+        lastClipboardChangeCount = nil
         lastScreenshotItem.isEnabled = true
 
         switch UserDefaults.standard.string(forKey: "afterSave") {

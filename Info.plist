@@ -20,7 +20,5 @@
     <true/>
     <key>LSMinimumSystemVersion</key>
     <string>13.0</string>
-    <key>NSAppleEventsUsageDescription</key>
-    <string>ScreenshotMenu uses Apple Events to open captured screenshots in Preview.</string>
 </dict>
 </plist>
