@@ -4,7 +4,7 @@ A screenshot menu for the macOS menu bar. Nine capture modes, one click each, no
 keyboard shortcuts to memorise.
 
 It is a thin native wrapper around `screencapture`, the screenshot tool that
-already ships with macOS. About 240 lines of Swift, no dependencies, no
+already ships with macOS. Under 300 lines of Swift, no dependencies, no
 telemetry, no network code, no Accessibility permission. Signed with a Developer
 ID and notarised by Apple.
 
