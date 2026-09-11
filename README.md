@@ -89,6 +89,15 @@ If you want annotation, OCR, scrolling capture or a screenshot history, use
 [Shottr](https://shottr.cc) or CleanShot X. This app deliberately does none of
 that.
 
+## About the name
+
+There is an older ScreenshotMenu by Malcolm Hall on the Mac App Store, last
+updated in January 2017. This is not that app, and I am not its developer.
+
+The name is descriptive rather than invented — this is, literally, a screenshot
+menu — and no trademark is involved. Saying so here because the two are easy to
+confuse and you deserve to know which one you are downloading.
+
 ## Building
 
 Requires macOS 13 or later and a Swift toolchain (Xcode or the Command Line
