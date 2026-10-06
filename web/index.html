@@ -5,31 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- Primary SEO -->
-<title>ScreenshotMenu — Free macOS Menu Bar Screenshot App</title>
-<meta name="description" content="ScreenshotMenu is a free, lightweight macOS menu bar screenshot tool. Capture fullscreen, window, or area shots to a file or clipboard, with timed captures, silent mode and auto-launch. A simple screenshot maker for Mac." />
-<meta name="keywords" content="macOS screenshot app, mac screenshot maker, menu bar screenshot tool, screen capture mac, free screenshot app macOS, area screenshot mac, window screenshot, clipboard screenshot, timed screenshot, screencapture GUI" />
-<meta name="author" content="ScreenshotMenu" />
+<title>ScreenshotMenu — Free Menu Bar Screenshot App for Mac</title>
+<meta name="description" content="ScreenshotMenu is a free, open-source screenshot app for the Mac menu bar. Capture fullscreen, a window or an area to a file or the clipboard in one click, with timed and silent captures. No network code, no Accessibility permission." />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#2f6bff" />
 <link rel="canonical" href="https://screenshotmenu.nestimer.com/" />
-<link rel="icon" type="image/png" href="assets/icon.png" />
-<link rel="apple-touch-icon" href="assets/icon.png" />
+<link rel="icon" type="image/png" href="/assets/icon.png" />
+<link rel="apple-touch-icon" href="/assets/icon.png" />
+<link rel="stylesheet" href="/assets/site.css" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://screenshotmenu.nestimer.com/" />
-<meta property="og:title" content="ScreenshotMenu — Free macOS Menu Bar Screenshot App" />
-<meta property="og:description" content="A simple, beautiful screenshot maker for macOS that lives in your menu bar. Capture to file or clipboard, timed shots, silent mode, auto-launch." />
-<meta property="og:image" content="https://screenshotmenu.nestimer.com/assets/menu-screenshot.png" />
+<meta property="og:title" content="ScreenshotMenu — Free Menu Bar Screenshot App for Mac" />
+<meta property="og:description" content="Every macOS screenshot mode one click away in the menu bar. Free, open source, no network code." />
+<meta property="og:image" content="https://screenshotmenu.nestimer.com/assets/og.png" />
 <meta property="og:site_name" content="ScreenshotMenu" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="ScreenshotMenu — Free macOS Menu Bar Screenshot App" />
-<meta name="twitter:description" content="A simple, beautiful screenshot maker for macOS that lives in your menu bar." />
-<meta name="twitter:image" content="https://screenshotmenu.nestimer.com/assets/menu-screenshot.png" />
+<meta name="twitter:title" content="ScreenshotMenu — Free Menu Bar Screenshot App for Mac" />
+<meta name="twitter:description" content="Every macOS screenshot mode one click away in the menu bar. Free, open source, no network code." />
+<meta name="twitter:image" content="https://screenshotmenu.nestimer.com/assets/og.png" />
 
-<!-- Structured data: SoftwareApplication (helps Google & AI assistants) -->
+<!-- Structured data: SoftwareApplication -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,31 +37,43 @@
   "applicationCategory": "UtilitiesApplication",
   "applicationSubCategory": "Screenshot Tool",
   "operatingSystem": "macOS 13.0 or later",
-  "processorRequirements": "Apple Silicon / Intel",
-  "description": "ScreenshotMenu is a free, lightweight macOS menu bar app for taking screenshots. Capture fullscreen, window, or a selected area to a file or directly to the clipboard, with timed captures, silent mode, open-in-Preview and auto-launch at login. A simple screenshot maker for Mac built on top of the native screencapture engine.",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
+  "processorRequirements": "Apple Silicon or Intel (universal binary)",
+  "description": "ScreenshotMenu is a free, open-source macOS menu bar app for taking screenshots. It captures the full screen, a window or a selected area to a file or the clipboard, with 5-second timed captures, silent mode, open-in-Preview and launch at login. It is a thin wrapper around the built-in screencapture tool, with no network code and no Accessibility permission.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "featureList": [
     "Fullscreen, window and area capture",
-    "Save to file or copy to clipboard",
+    "Save to file with a save dialog, or copy to the clipboard",
     "Timed 5-second captures",
     "Open last screenshot",
     "Silent mode (no shutter sound)",
-    "Auto-launch at login",
+    "Launch at login",
     "Open in Preview or reveal in Finder",
-    "Native menu bar app, no Dock icon"
+    "No network code, no analytics, no Accessibility permission",
+    "Open source under the MIT licence"
   ],
   "image": "https://screenshotmenu.nestimer.com/assets/menu-screenshot.png",
+  "screenshot": "https://screenshotmenu.nestimer.com/assets/menu-screenshot.png",
   "url": "https://screenshotmenu.nestimer.com/",
   "downloadUrl": "https://github.com/ScreenshotMenu/ScreenshotMenu/releases/latest/download/ScreenshotMenu.dmg",
-  "softwareVersion": "1.0"
+  "softwareVersion": "1.0.2",
+  "license": "https://opensource.org/licenses/MIT",
+  "codeRepository": "https://github.com/ScreenshotMenu/ScreenshotMenu",
+  "publisher": { "@id": "https://gt-d.cz/#org" }
 }
 </script>
 
-<!-- Structured data: FAQ (AI & search rich results) -->
+<!-- Structured data: Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://gt-d.cz/#org",
+  "name": "Global Tech Distribution s.r.o.",
+  "url": "https://gt-d.cz"
+}
+</script>
+
+<!-- Structured data: FAQ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -71,282 +82,82 @@
     {
       "@type": "Question",
       "name": "What is ScreenshotMenu?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "ScreenshotMenu is a free, lightweight macOS menu bar app for taking screenshots. It lets you capture the full screen, a single window, or a selected area, and save it to a file or copy it straight to the clipboard."
-      }
+      "acceptedAnswer": { "@type": "Answer", "text": "ScreenshotMenu is a free, open-source macOS menu bar app for taking screenshots. It puts nine capture modes (fullscreen, window or area, to a file, to the clipboard or on a 5-second timer) in one menu, so you don't need to remember keyboard shortcuts." }
     },
     {
       "@type": "Question",
       "name": "Is ScreenshotMenu free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. ScreenshotMenu is completely free to download and use on macOS 13 (Ventura) or later."
-      }
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is free and open source under the MIT licence, with no ads, accounts or in-app purchases. It runs on macOS 13 Ventura or later, on Apple Silicon and Intel Macs." }
     },
     {
       "@type": "Question",
-      "name": "How does ScreenshotMenu capture screenshots?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It provides a clean menu bar interface on top of macOS's built-in screencapture engine, so screenshots look identical to native macOS captures while being one click away from your menu bar."
-      }
+      "name": "How is it different from the built-in macOS screenshot tool?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It uses the same engine, Apple's screencapture tool, so images are identical. The difference is access: every mode is one click away in the menu bar, file captures always ask where to save, and silent mode mutes only screenshots." }
     },
     {
       "@type": "Question",
-      "name": "Does ScreenshotMenu support timed screenshots?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. You can take timed fullscreen, window, or area screenshots with a 5-second delay, which is useful for capturing menus, tooltips, and hover states."
-      }
+      "name": "What permissions does ScreenshotMenu need?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Only Screen Recording, which macOS requires for every app that captures the screen. It does not ask for Accessibility, and it contains no network code." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does ScreenshotMenu have annotation, OCR or scrolling capture?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No, deliberately. It can open every capture in Preview, which has arrows, shapes and text. For blur, OCR, scrolling capture or a capture history, a full suite such as Shottr or CleanShot X fits better." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this the ScreenshotMenu on the Mac App Store?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. There is an older, unrelated ScreenshotMenu by another developer on the Mac App Store, last updated in 2017. This one is distributed as a signed, notarised DMG from GitHub." }
     }
   ]
 }
 </script>
-
-<style>
-  :root {
-    --accent: #2f6bff;
-    --accent-2: #5b8bff;
-    --ink: #0b1220;
-    --muted: #5b6678;
-    --bg: #f6f8fd;
-    --card: #ffffff;
-    --border: #e6eaf2;
-    --radius: 18px;
-    --shadow: 0 20px 60px -20px rgba(20, 40, 90, .25);
-    --shadow-sm: 0 6px 24px -10px rgba(20, 40, 90, .18);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", system-ui, sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  /* ambient gradient blobs */
-  body::before, body::after {
-    content: "";
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(90px);
-    z-index: -1;
-    opacity: .5;
-  }
-  body::before {
-    width: 520px; height: 520px;
-    background: radial-gradient(circle, #9bb8ff, transparent 70%);
-    top: -160px; right: -120px;
-  }
-  body::after {
-    width: 480px; height: 480px;
-    background: radial-gradient(circle, #c9d8ff, transparent 70%);
-    bottom: -160px; left: -140px;
-  }
-
-  a { color: inherit; text-decoration: none; }
-
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-
-  /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 50;
-    backdrop-filter: saturate(180%) blur(20px);
-    background: rgba(246, 248, 253, .72);
-    border-bottom: 1px solid var(--border);
-  }
-  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; letter-spacing: -.02em; }
-  .brand img { width: 30px; height: 30px; border-radius: 8px; box-shadow: var(--shadow-sm); }
-  .nav-links { display: flex; gap: 26px; font-size: 14.5px; color: var(--muted); font-weight: 500; }
-  .nav-links a:hover { color: var(--ink); }
-  .nav-cta {
-    background: var(--accent); color: #fff; padding: 8px 16px; border-radius: 10px;
-    font-size: 14px; font-weight: 600; box-shadow: var(--shadow-sm);
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 24px -8px rgba(47,107,255,.6); }
-  @media (max-width: 720px) { .nav-links { display: none; } }
-
-  /* HERO */
-  .hero { padding: 86px 0 56px; }
-  .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; }
-  .pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: #eaf0ff; color: var(--accent); font-weight: 600; font-size: 13px;
-    padding: 6px 12px; border-radius: 999px; margin-bottom: 22px;
-    border: 1px solid #d8e2ff;
-  }
-  .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-  h1 {
-    font-size: clamp(38px, 5.4vw, 60px); line-height: 1.04; letter-spacing: -.035em;
-    font-weight: 800; margin-bottom: 20px;
-  }
-  h1 .grad {
-    background: linear-gradient(120deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .lead { font-size: 18.5px; color: var(--muted); max-width: 520px; margin-bottom: 30px; }
-  .cta-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--accent); color: #fff; font-weight: 650; font-size: 15.5px;
-    padding: 14px 24px; border-radius: 14px; box-shadow: 0 14px 34px -12px rgba(47,107,255,.7);
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 44px -12px rgba(47,107,255,.85); }
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 8px;
-    color: var(--ink); font-weight: 600; font-size: 15px; padding: 14px 18px;
-    border-radius: 14px; border: 1px solid var(--border); background: var(--card);
-    transition: border-color .15s ease;
-  }
-  .btn-ghost:hover { border-color: #c7d2e8; }
-  .meta-line { margin-top: 18px; font-size: 13.5px; color: var(--muted); display: flex; gap: 16px; flex-wrap: wrap; }
-  .meta-line span { display: inline-flex; align-items: center; gap: 6px; }
-
-  /* hero visual */
-  .shot-stage {
-    position: relative; display: flex; justify-content: center;
-    padding: 30px;
-    border-radius: 26px;
-    background:
-      radial-gradient(120% 120% at 30% 0%, #dbe6ff 0%, #eef3ff 45%, #f6f8fd 100%);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-  }
-  .shot-stage img.shot {
-    width: 88%; max-width: 360px; border-radius: 14px;
-    box-shadow: 0 30px 70px -24px rgba(20,40,90,.5);
-  }
-
-  @media (max-width: 880px) {
-    .hero .wrap { grid-template-columns: 1fr; }
-    .hero { padding: 56px 0 36px; }
-    .lead { margin-left: auto; margin-right: auto; }
-    .hero .col-text { text-align: center; }
-    .cta-row { justify-content: center; }
-    .meta-line { justify-content: center; }
-  }
-
-  /* SECTION */
-  section { padding: 64px 0; }
-  .section-head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
-  .section-head h2 { font-size: clamp(28px, 3.6vw, 40px); letter-spacing: -.03em; font-weight: 800; margin-bottom: 14px; }
-  .section-head p { color: var(--muted); font-size: 17px; }
-  .eyebrow { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 12px; }
-
-  /* FEATURE GRID */
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  @media (max-width: 880px) { .grid { grid-template-columns: 1fr; } }
-  .feature {
-    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 28px; box-shadow: var(--shadow-sm);
-    transition: transform .18s ease, box-shadow .18s ease;
-  }
-  .feature:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-  .ficon {
-    width: 48px; height: 48px; border-radius: 13px; display: grid; place-items: center;
-    background: linear-gradient(135deg, #eaf0ff, #dbe6ff); color: var(--accent); margin-bottom: 18px;
-  }
-  .ficon svg { width: 26px; height: 26px; }
-  .feature h3 { font-size: 18px; letter-spacing: -.01em; margin-bottom: 8px; }
-  .feature p { color: var(--muted); font-size: 15px; }
-
-  /* HOW / steps */
-  .how { background: linear-gradient(180deg, #fff, #f1f5ff); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
-  @media (max-width: 880px) { .steps { grid-template-columns: 1fr; } }
-  .step { text-align: center; }
-  .step .num {
-    width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: #fff;
-    display: grid; place-items: center; font-weight: 700; margin: 0 auto 16px; box-shadow: var(--shadow-sm);
-  }
-  .step h3 { font-size: 17px; margin-bottom: 8px; }
-  .step p { color: var(--muted); font-size: 15px; }
-
-  /* FAQ */
-  .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-  details {
-    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
-    padding: 4px 22px; box-shadow: var(--shadow-sm);
-  }
-  details summary {
-    cursor: pointer; list-style: none; padding: 16px 0; font-weight: 650; font-size: 16.5px;
-    display: flex; justify-content: space-between; align-items: center; gap: 16px;
-  }
-  details summary::-webkit-details-marker { display: none; }
-  details summary::after { content: "+"; color: var(--accent); font-size: 22px; font-weight: 400; transition: transform .2s ease; }
-  details[open] summary::after { transform: rotate(45deg); }
-  details p { color: var(--muted); padding: 0 0 18px; font-size: 15.5px; }
-
-  /* DOWNLOAD CTA */
-  .download {
-    text-align: center;
-    background: linear-gradient(135deg, var(--accent), #1f4fd6);
-    color: #fff; border-radius: 28px; padding: 64px 32px; margin: 24px 0 0;
-    box-shadow: 0 30px 70px -24px rgba(47,107,255,.6);
-  }
-  .download h2 { font-size: clamp(28px, 4vw, 42px); letter-spacing: -.03em; margin-bottom: 14px; font-weight: 800; }
-  .download p { opacity: .9; font-size: 17px; max-width: 520px; margin: 0 auto 30px; }
-  .download .btn-primary { background: #fff; color: var(--accent); box-shadow: 0 14px 34px -12px rgba(0,0,0,.4); }
-  .download .btn-primary:hover { box-shadow: 0 20px 44px -12px rgba(0,0,0,.5); }
-  .download .sub { margin-top: 16px; font-size: 13.5px; opacity: .8; }
-
-  /* FOOTER */
-  footer { padding: 48px 0 60px; text-align: center; color: var(--muted); font-size: 14px; }
-  footer .brand { justify-content: center; margin-bottom: 14px; color: var(--ink); }
-  footer a { color: var(--accent); font-weight: 600; }
-</style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="wrap">
-    <a class="brand" href="#top"><img src="assets/icon.png" alt="ScreenshotMenu icon" /> ScreenshotMenu</a>
+    <a class="brand" href="/"><img src="/assets/icon.png" alt="" width="30" height="30" /> ScreenshotMenu</a>
     <div class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#how">How it works</a>
-      <a href="#faq">FAQ</a>
+      <a href="/#features">Features</a>
+      <a href="/use-cases/">Use cases</a>
+      <a href="/#privacy">Privacy</a>
+      <a href="/#faq">FAQ</a>
     </div>
-    <a class="nav-cta" href="#download">Download</a>
+    <a class="nav-cta" href="/#download">Download</a>
   </div>
 </nav>
+<!-- /NAV -->
 
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="wrap">
     <div class="col-text">
-      <span class="pill"><span class="dot"></span> Free · macOS menu bar app</span>
-      <h1>The simple <span class="grad">screenshot maker</span> for your Mac menu bar.</h1>
+      <span class="pill"><span class="dot"></span> Free &amp; open source · macOS menu bar app</span>
+      <h1>Every Mac screenshot, <span class="grad">one click away.</span></h1>
       <p class="lead">
-        ScreenshotMenu lives quietly in your menu bar and turns macOS screen capture into one click.
-        Grab the fullscreen, a window, or any area — straight to a file or your clipboard.
+        ScreenshotMenu puts all of macOS's screenshot modes into one menu bar menu.
+        Grab the full screen, a window or any area, to a file or straight to the clipboard,
+        without remembering a single shortcut.
       </p>
       <div class="cta-row">
         <a class="btn-primary" href="#download">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
           Download for macOS
         </a>
-        <a class="btn-ghost" href="#features">See features</a>
+        <a class="btn-ghost" href="/use-cases/">See use cases</a>
       </div>
       <div class="meta-line">
         <span>🍎 macOS 13 Ventura+</span>
-        <span>🪶 Tiny & native</span>
-        <span>💸 100% free</span>
+        <span>🔒 No network code</span>
+        <span>💸 Free, MIT licence</span>
       </div>
     </div>
 
     <div class="col-visual">
       <div class="shot-stage">
-        <img class="shot" src="assets/menu-screenshot.png" alt="ScreenshotMenu open in the macOS menu bar showing capture options" />
+        <img class="shot" src="/assets/menu-screenshot.png" width="388" height="692" alt="The ScreenshotMenu menu open in the macOS menu bar, listing file, clipboard and timed capture modes and settings" />
       </div>
     </div>
   </div>
@@ -357,47 +168,170 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Everything you need</div>
-      <h2>Powerful capture, zero clutter</h2>
-      <p>All the essentials of a great screenshot tool, packed into one tidy menu bar drop-down.</p>
+      <h2>Native capture, zero clutter</h2>
+      <p>The essentials of a screenshot tool in one tidy drop-down. Nothing more.</p>
     </div>
 
     <div class="grid">
       <div class="feature">
         <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2"/><circle cx="12" cy="12" r="3"/></svg></div>
-        <h3>Fullscreen, window & area</h3>
-        <p>Capture the entire screen, a single window, or drag to select any region — just like native macOS, but faster to reach.</p>
+        <h3>Fullscreen, window &amp; area</h3>
+        <p>Capture the whole screen, a single window, or drag over any region. Same results as native macOS, but one click to reach.</p>
       </div>
 
       <div class="feature">
         <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></div>
         <h3>File or clipboard</h3>
-        <p>Save shots as PNG with a smart default name, or copy straight to the clipboard to paste into chats, docs and design tools.</p>
+        <p>Save a PNG through a save dialog that opens once the screen is clear, or copy straight to the clipboard to paste into chats and tickets.</p>
       </div>
 
       <div class="feature">
         <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></div>
         <h3>Timed captures</h3>
-        <p>A 5-second delay lets you open menus, tooltips and hover states before the shutter fires. Available for every capture mode.</p>
+        <p>A 5-second delay gives you time to open menus, tooltips and hover states before the shutter fires. Fullscreen, window or area.</p>
       </div>
 
       <div class="feature">
         <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg></div>
         <h3>Silent mode</h3>
-        <p>Mute the camera shutter sound for distraction-free captures during meetings, recordings or late-night work.</p>
+        <p>Turn off the shutter sound for screenshots only, without muting your call, your music or the rest of the Mac.</p>
       </div>
 
       <div class="feature">
         <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></div>
-        <h3>Auto-launch at login</h3>
-        <p>Toggle launch-at-login so ScreenshotMenu is always ready in your menu bar — no Dock icon, no fuss.</p>
+        <h3>Launch at login</h3>
+        <p>Tick Autolaunch and the camera icon is there after every restart. No Dock icon, no windows.</p>
       </div>
 
       <div class="feature">
         <div class="ficon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
         <h3>Open in Preview or Finder</h3>
-        <p>Automatically reveal each new screenshot in Finder or open it in Preview — or reopen your last capture instantly.</p>
+        <p>Open each capture in Preview to mark it up, or reveal it in Finder. Open Last Screenshot brings the latest file back at any time.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="use-cases" class="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Use cases</div>
+      <h2>Made for the screenshots you take every day</h2>
+      <p>Bug reports, documentation, calls, design reviews. Here is which menu item fits each job.</p>
+    </div>
+    <div class="uc-grid">
+<!-- USE-CASES -->
+      <a class="uc-card" href="/use-cases/screenshot-to-clipboard/">
+        <span class="who">Bug reports &amp; chats</span>
+        <h3>Screenshot to clipboard on Mac, in one click</h3>
+        <p>Grab an area straight to the clipboard and paste it into Slack, Jira or a GitHub issue. No file to find and delete later.</p>
+        <span class="more">Read more →</span>
+      </a>
+      <a class="uc-card" href="/use-cases/timed-screenshot/">
+        <span class="who">Docs &amp; tutorials</span>
+        <h3>Timed screenshots on Mac: capture menus, tooltips and hover states</h3>
+        <p>A 5-second delay gives you time to open the menu, hover the button or show the tooltip before the shutter fires.</p>
+        <span class="more">Read more →</span>
+      </a>
+      <a class="uc-card" href="/use-cases/silent-screenshot/">
+        <span class="who">Calls &amp; screen sharing</span>
+        <h3>Take a screenshot on Mac without the shutter sound</h3>
+        <p>Turn off the shutter sound for screenshots only, without muting the call you are in.</p>
+        <span class="more">Read more →</span>
+      </a>
+      <a class="uc-card" href="/use-cases/screenshot-without-keyboard/">
+        <span class="who">New Mac users</span>
+        <h3>How to take a screenshot on Mac without keyboard shortcuts</h3>
+        <p>Every capture mode in one menu, for anyone who can never remember ⌘⇧3, ⌘⇧4 and ⌘⇧5, or would rather use the trackpad.</p>
+        <span class="more">Read more →</span>
+      </a>
+      <a class="uc-card" href="/use-cases/window-screenshot/">
+        <span class="who">Designers &amp; writers</span>
+        <h3>Screenshot a single window on Mac and save it as PNG</h3>
+        <p>Capture one app window, with no desktop clutter around it, and choose where the PNG is saved.</p>
+        <span class="more">Read more →</span>
+      </a>
+      <a class="uc-card" href="/use-cases/annotate-screenshots/">
+        <span class="who">Feedback &amp; reviews</span>
+        <h3>Take a screenshot and mark it up in Preview</h3>
+        <p>Send every capture straight to Preview to add arrows, boxes and text with the markup tools already on your Mac.</p>
+        <span class="more">Read more →</span>
+      </a>
+<!-- /USE-CASES -->
+    </div>
+    <div class="center-link"><a href="/use-cases/">All use cases →</a></div>
+  </div>
+</section>
+
+<!-- ALL MODES -->
+<section id="modes">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The whole menu</div>
+      <h2>Nine capture modes, four settings</h2>
+      <p>Each item runs macOS's own <code>screencapture</code> with the right options. Here is what you'd otherwise type or remember.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Menu item</th><th>What it does</th><th>Built-in equivalent</th></tr>
+        <tr><td><span class="mi">Fullscreen to File</span></td><td>Whole screen, then a save dialog</td><td><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>3</kbd></td></tr>
+        <tr><td><span class="mi">Window to File</span></td><td>Click a window, then a save dialog</td><td><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>4</kbd> <kbd>Space</kbd></td></tr>
+        <tr><td><span class="mi">Area to File</span></td><td>Drag over a region, then a save dialog</td><td><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>4</kbd></td></tr>
+        <tr><td><span class="mi">Fullscreen to Clipboard</span></td><td>Whole screen, ready to paste</td><td><kbd>⌃</kbd> <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>3</kbd></td></tr>
+        <tr><td><span class="mi">Window to Clipboard</span></td><td>One window, ready to paste</td><td><kbd>⌃</kbd> <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>4</kbd> <kbd>Space</kbd></td></tr>
+        <tr><td><span class="mi">Area to Clipboard</span></td><td>A region, ready to paste</td><td><kbd>⌃</kbd> <kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>4</kbd></td></tr>
+        <tr><td><span class="mi">Timed Fullscreen (5s)</span></td><td>Whole screen after 5 seconds, to a file</td><td><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>5</kbd> › Options › 5 s</td></tr>
+        <tr><td><span class="mi">Timed Window (5s)</span></td><td>One window after 5 seconds, to a file</td><td><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>5</kbd> › Options › 5 s</td></tr>
+        <tr><td><span class="mi">Timed Area (5s)</span></td><td>A region after 5 seconds, to a file</td><td><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>5</kbd> › Options › 5 s</td></tr>
+        <tr><td><span class="mi">Open Last Screenshot</span></td><td>Reopens the last file you saved</td><td class="no">—</td></tr>
+        <tr><td><span class="mi">Silent Mode</span></td><td>No shutter sound for menu captures</td><td class="no">Mute the whole Mac</td></tr>
+        <tr><td><span class="mi">Autolaunch</span></td><td>Starts at login</td><td class="no">—</td></tr>
+        <tr><td><span class="mi">Open in Preview</span> / <span class="mi">Show in Finder</span></td><td>What happens after a capture (pick one or neither)</td><td class="no">Floating thumbnail</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section id="privacy" class="privacy">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Privacy by design</div>
+      <h2>Small enough to trust</h2>
+      <p>Screenshots hold passwords, customer data and private messages. The tool that takes them shouldn't need anything more than the screen.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><strong>0</strong><span>lines of network code. No analytics, update checks or crash reports.</span></div>
+      <div class="fact"><strong>1</strong><span>permission: Screen Recording, which every capture app needs. No Accessibility.</span></div>
+      <div class="fact"><strong>&lt;300</strong><span>lines of Swift in one file you can read in a few minutes.</span></div>
+      <div class="fact"><strong>✓</strong><span>Signed with a Developer ID and notarised by Apple. MIT licence.</span></div>
+    </div>
+    <p class="note">Every capture runs <code>/usr/sbin/screencapture</code>, the screenshot tool already on your Mac, so images come from Apple's own code. <a href="/use-cases/private-screenshot-app/">More on privacy →</a></p>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section id="compare">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Honest comparison</div>
+      <h2>Where it fits</h2>
+      <p>ScreenshotMenu sits between the built-in shortcuts and full screenshot suites, on purpose.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tr><th></th><th>macOS shortcuts</th><th>ScreenshotMenu</th><th>Full suites<br><small>Shottr, CleanShot X</small></th></tr>
+        <tr><td>All modes reachable by mouse</td><td class="no">Partly, via ⌘⇧5</td><td class="yes">Yes, one menu</td><td class="yes">Yes</td></tr>
+        <tr><td>Choose where each file goes</td><td class="no">One fixed folder</td><td class="yes">Save dialog every time</td><td>Varies</td></tr>
+        <tr><td>Mute only screenshot sound</td><td class="no">No</td><td class="yes">Silent Mode</td><td>Usually a setting</td></tr>
+        <tr><td>Annotation, OCR, scrolling capture</td><td class="no">Markup in Preview</td><td class="no">Markup in Preview</td><td class="yes">Yes</td></tr>
+        <tr><td>Accessibility permission</td><td>Not needed</td><td class="yes">Not needed</td><td>Often requested</td></tr>
+        <tr><td>Network access</td><td>—</td><td class="yes">None</td><td>Typically updates, licensing</td></tr>
+        <tr><td>Price</td><td>Built in</td><td class="yes">Free, open source</td><td>Paid or freemium</td></tr>
+      </table>
+    </div>
+    <p class="note">Need blur, OCR, scrolling capture or a capture history? Use <a href="https://shottr.cc">Shottr</a> or CleanShot X. They're great. ScreenshotMenu deliberately does less.</p>
   </div>
 </section>
 
@@ -405,25 +339,24 @@
 <section class="how" id="how">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Dead simple</div>
-      <h2>Three clicks, done</h2>
-      <p>Built on the native macOS capture engine, so your screenshots look exactly as expected.</p>
+      <div class="eyebrow">Getting started</div>
+      <h2>Up and running in a minute</h2>
     </div>
     <div class="steps">
       <div class="step">
         <div class="num">1</div>
-        <h3>Click the menu bar icon</h3>
-        <p>The camera-viewfinder icon sits in your menu bar, always one click away.</p>
+        <h3>Install</h3>
+        <p>Download the DMG and drag ScreenshotMenu to Applications. It's notarised, so it opens without warnings.</p>
       </div>
       <div class="step">
         <div class="num">2</div>
-        <h3>Pick your capture</h3>
-        <p>Choose fullscreen, window or area — to a file, the clipboard, or with a timer.</p>
+        <h3>Allow Screen Recording</h3>
+        <p>macOS asks once. It's the only permission the app needs.</p>
       </div>
       <div class="step">
         <div class="num">3</div>
-        <h3>Save or paste</h3>
-        <p>Name your PNG, or paste from the clipboard anywhere. Optionally open it in Preview.</p>
+        <h3>Click the camera</h3>
+        <p>Pick a capture from the menu bar. Tick Autolaunch to keep it there after restarts.</p>
       </div>
     </div>
   </div>
@@ -439,23 +372,31 @@
     <div class="faq-list">
       <details open>
         <summary>What is ScreenshotMenu?</summary>
-        <p>ScreenshotMenu is a free, lightweight macOS menu bar app for taking screenshots. It lets you capture the full screen, a single window, or a selected area, and save it to a file or copy it straight to the clipboard — all from a tidy drop-down menu.</p>
+        <p>A free, open-source macOS menu bar app for taking screenshots. It puts nine capture modes (fullscreen, window or area, to a file, to the clipboard or on a 5-second timer) in one menu, so you don't need to remember keyboard shortcuts.</p>
       </details>
       <details>
         <summary>Is it really free?</summary>
-        <p>Yes. ScreenshotMenu is completely free to download and use on macOS 13 (Ventura) or later, on both Apple Silicon and Intel Macs.</p>
+        <p>Yes. It's free and open source under the MIT licence, with no ads, accounts or in-app purchases. It runs on macOS 13 Ventura or later, on Apple Silicon and Intel Macs.</p>
       </details>
       <details>
         <summary>How is it different from the built-in screenshot tool?</summary>
-        <p>It uses the same native macOS capture engine, so quality is identical — but it puts every mode (file, clipboard, timed, fullscreen, window, area) one click away in your menu bar, with extras like silent mode, auto-launch and open-in-Preview.</p>
+        <p>It uses the same engine, Apple's <code>screencapture</code>, so images are identical. The difference is access: every mode is one click away in the menu bar, file captures always ask where to save, and Silent Mode mutes only screenshots.</p>
       </details>
       <details>
-        <summary>Does it support timed and silent screenshots?</summary>
-        <p>Yes. Take 5-second timed captures to grab menus and hover states, and enable Silent Mode to mute the shutter sound.</p>
+        <summary>What permissions does it need?</summary>
+        <p>Only Screen Recording, which macOS requires for every app that captures the screen, Apple's own included. The prompt mentions system audio because one permission covers both; the app never records video or audio. It doesn't ask for Accessibility and has no network code.</p>
       </details>
       <details>
-        <summary>Will it clutter my Dock?</summary>
-        <p>No. ScreenshotMenu is a menu-bar-only app (no Dock icon) and uses almost no resources.</p>
+        <summary>Does it have annotation, OCR or scrolling capture?</summary>
+        <p>No, deliberately. Tick Open in Preview to mark up captures with arrows, shapes and text. For blur, OCR, scrolling capture or a capture history, a full suite such as Shottr or CleanShot X fits better.</p>
+      </details>
+      <details>
+        <summary>Is this the ScreenshotMenu on the Mac App Store?</summary>
+        <p>No. There's an older, unrelated ScreenshotMenu by another developer on the Mac App Store, last updated in 2017. This one is distributed as a signed, notarised DMG from GitHub.</p>
+      </details>
+      <details>
+        <summary>How do I uninstall it?</summary>
+        <p>Untick Autolaunch, choose Quit from the menu, and drag ScreenshotMenu from Applications to the Trash. You can also remove it from System Settings › Privacy &amp; Security › Screen Recording.</p>
       </details>
     </div>
   </div>
@@ -466,12 +407,12 @@
   <div class="wrap">
     <div class="download">
       <h2>Get ScreenshotMenu</h2>
-      <p>Download the signed &amp; notarized DMG, drag it to Applications, and you're capturing in seconds.</p>
+      <p>Download the signed, notarised DMG, drag it to Applications, and you're capturing in seconds.</p>
       <a class="btn-primary" href="https://github.com/ScreenshotMenu/ScreenshotMenu/releases/latest/download/ScreenshotMenu.dmg">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
         Download .dmg
       </a>
-      <div class="sub">Requires macOS 13 Ventura or later · Apple Silicon &amp; Intel</div>
+      <div class="sub">Version 1.0.2 · macOS 13 Ventura or later · Apple Silicon &amp; Intel</div>
       <div class="sub">Free and open source under the MIT licence · <a href="https://github.com/ScreenshotMenu/ScreenshotMenu">Read the source on GitHub</a></div>
     </div>
   </div>
@@ -480,11 +421,50 @@
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
-    <div class="brand"><img src="assets/icon.png" alt="ScreenshotMenu icon" style="width:26px;height:26px;border-radius:7px;" /> ScreenshotMenu</div>
-    <p>A simple, free screenshot maker for macOS. Built with Swift &amp; AppKit.</p>
-    <p style="margin-top:10px;">© 2026 ScreenshotMenu · <a href="#top">Back to top</a></p>
+    <div class="foot-grid">
+      <div>
+        <div class="brand"><img src="/assets/icon.png" alt="" width="26" height="26" /> ScreenshotMenu</div>
+        <p>A free, open-source screenshot menu for the macOS menu bar. Built on Apple's own <code>screencapture</code>.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#modes">All capture modes</a></li>
+          <li><a href="/#privacy">Privacy</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="https://github.com/ScreenshotMenu/ScreenshotMenu/releases/latest/download/ScreenshotMenu.dmg">Download</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Use cases</h4>
+        <ul>
+          <li><a href="/use-cases/screenshot-to-clipboard/">Bug reports &amp; chats</a></li>
+          <li><a href="/use-cases/timed-screenshot/">Docs &amp; tutorials</a></li>
+          <li><a href="/use-cases/silent-screenshot/">Calls &amp; screen sharing</a></li>
+          <li><a href="/use-cases/screenshot-without-keyboard/">New Mac users</a></li>
+          <li><a href="/use-cases/window-screenshot/">Designers &amp; writers</a></li>
+          <li><a href="/use-cases/annotate-screenshots/">Feedback &amp; reviews</a></li>
+          <li><a href="/use-cases/private-screenshot-app/">Privacy-minded &amp; IT</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Open source</h4>
+        <ul>
+          <li><a href="https://github.com/ScreenshotMenu/ScreenshotMenu">Source on GitHub</a></li>
+          <li><a href="https://github.com/ScreenshotMenu/ScreenshotMenu/releases">Releases</a></li>
+          <li><a href="https://github.com/ScreenshotMenu/ScreenshotMenu/issues">Report an issue</a></li>
+          <li><a href="https://github.com/ScreenshotMenu/ScreenshotMenu/blob/main/LICENSE">MIT licence</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 <a href="https://gt-d.cz">Global Tech Distribution s.r.o.</a></span>
+      <span>Made for macOS 13 Ventura and later · Apple Silicon &amp; Intel</span>
+    </div>
   </div>
 </footer>
+<!-- /FOOTER -->
 
 </body>
 </html>

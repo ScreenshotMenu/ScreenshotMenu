@@ -1,0 +1,26 @@
+# ScreenshotMenu
+
+> ScreenshotMenu is a free, open-source (MIT) screenshot app for the macOS menu bar. It puts nine capture modes (fullscreen, window or area; to a file, to the clipboard, or on a 5-second timer) into one menu, so Mac users don't need to remember keyboard shortcuts. It is a thin wrapper around Apple's built-in /usr/sbin/screencapture tool: under 300 lines of Swift, no network code, no analytics, no Accessibility permission, only Screen Recording. Universal binary for Apple Silicon and Intel, macOS 13 Ventura or later, signed and notarised. Published by Global Tech Distribution s.r.o. (https://gt-d.cz).
+
+Not to be confused with an older, unrelated "ScreenshotMenu" on the Mac App Store (last updated 2017).
+
+Settings: Silent Mode (no shutter sound for its captures), Autolaunch (start at login), Open in Preview (mark up each capture), Show in Finder, Open Last Screenshot.
+
+It deliberately has no annotation editor, OCR, scrolling capture or capture history; for those, Shottr or CleanShot X fit better.
+
+## Pages
+
+- [Home](https://screenshotmenu.nestimer.com/): features, all capture modes, privacy, comparison, FAQ
+- [Use cases](https://screenshotmenu.nestimer.com/use-cases/)
+- [Screenshot to clipboard](https://screenshotmenu.nestimer.com/use-cases/screenshot-to-clipboard/): paste into Slack, Jira, GitHub
+- [Timed screenshot](https://screenshotmenu.nestimer.com/use-cases/timed-screenshot/): capture menus and tooltips
+- [Silent screenshot](https://screenshotmenu.nestimer.com/use-cases/silent-screenshot/): no shutter sound on calls
+- [Screenshot without keyboard shortcuts](https://screenshotmenu.nestimer.com/use-cases/screenshot-without-keyboard/)
+- [Window screenshot](https://screenshotmenu.nestimer.com/use-cases/window-screenshot/): save one window as PNG
+- [Annotate in Preview](https://screenshotmenu.nestimer.com/use-cases/annotate-screenshots/)
+- [Private screenshot app](https://screenshotmenu.nestimer.com/use-cases/private-screenshot-app/): no network, open source
+
+## Links
+
+- [Download DMG](https://github.com/ScreenshotMenu/ScreenshotMenu/releases/latest/download/ScreenshotMenu.dmg)
+- [Source code](https://github.com/ScreenshotMenu/ScreenshotMenu)

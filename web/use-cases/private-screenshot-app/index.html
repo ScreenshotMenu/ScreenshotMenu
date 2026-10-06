@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Private, Open-Source Screenshot App for Mac — ScreenshotMenu</title>
+<meta name="description" content="ScreenshotMenu is an open-source Mac screenshot app with no network code, no analytics and no Accessibility permission. Under 300 lines of Swift you can audit. Signed and notarised." />
+<meta name="theme-color" content="#2f6bff" />
+<link rel="canonical" href="https://screenshotmenu.nestimer.com/use-cases/private-screenshot-app/" />
+<link rel="icon" type="image/png" href="/assets/icon.png" />
+<link rel="apple-touch-icon" href="/assets/icon.png" />
+<link rel="stylesheet" href="/assets/site.css" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://screenshotmenu.nestimer.com/use-cases/private-screenshot-app/" />
+<meta property="og:title" content="Private, Open-Source Screenshot App for Mac — ScreenshotMenu" />
+<meta property="og:description" content="ScreenshotMenu is an open-source Mac screenshot app with no network code, no analytics and no Accessibility permission. Under 300 lines of Swift you can audit. Signed and notarised." />
+<meta property="og:image" content="https://screenshotmenu.nestimer.com/assets/og.png" />
+<meta property="og:site_name" content="ScreenshotMenu" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Private, Open-Source Screenshot App for Mac — ScreenshotMenu" />
+<meta name="twitter:description" content="ScreenshotMenu is an open-source Mac screenshot app with no network code, no analytics and no Accessibility permission. Under 300 lines of Swift you can audit. Signed and notarised." />
+<meta name="twitter:image" content="https://screenshotmenu.nestimer.com/assets/og.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "A private screenshot app for Mac: no network, no tracking",
+  "description": "ScreenshotMenu is an open-source Mac screenshot app with no network code, no analytics and no Accessibility permission. Under 300 lines of Swift you can audit. Signed and notarised.",
+  "url": "https://screenshotmenu.nestimer.com/use-cases/private-screenshot-app/",
+  "dateModified": "2026-10-06",
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "ScreenshotMenu",
+    "url": "https://screenshotmenu.nestimer.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Global Tech Distribution s.r.o.",
+    "url": "https://gt-d.cz"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does ScreenshotMenu upload my screenshots?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The app contains no network code. Captures go only to the file you choose or to the clipboard."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why doesn't ScreenshotMenu need Accessibility access?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It lets macOS's own screencapture tool do the work, including handing images to Preview, so it never has to control other apps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is ScreenshotMenu open source?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, under the MIT licence. The full source is on GitHub and the whole app is a single Swift file under 300 lines."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "ScreenshotMenu",
+      "item": "https://screenshotmenu.nestimer.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Use cases",
+      "item": "https://screenshotmenu.nestimer.com/use-cases/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Privacy-minded & IT",
+      "item": "https://screenshotmenu.nestimer.com/use-cases/private-screenshot-app/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/icon.png" alt="" width="30" height="30" /> ScreenshotMenu</a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/use-cases/">Use cases</a>
+      <a href="/#privacy">Privacy</a>
+      <a href="/#faq">FAQ</a>
+    </div>
+    <a class="nav-cta" href="/#download">Download</a>
+  </div>
+</nav>
+<!-- /NAV -->
+
+<main>
+<div class="wrap">
+  <div class="crumbs"><a href="/">ScreenshotMenu</a><span>›</span><a href="/use-cases/">Use cases</a><span>›</span>Privacy-minded &amp; IT</div>
+</div>
+
+<header class="article-hero">
+  <div class="wrap">
+    <div class="eyebrow">Privacy-minded &amp; IT</div>
+    <h1>A private screenshot app for Mac: no network, no tracking</h1>
+    <p class="lead">Screenshots often contain the most sensitive things on your screen: passwords, customer data, private messages. The tool that takes them should be easy to trust. ScreenshotMenu is small enough to check yourself.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://github.com/ScreenshotMenu/ScreenshotMenu/releases/latest/download/ScreenshotMenu.dmg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Download for macOS</a>
+      <a class="btn-ghost" href="/#modes">See all capture modes</a>
+    </div>
+  </div>
+</header>
+
+<section class="article">
+  <div class="wrap">
+    <div class="prose">
+<h2>What the app does not do</h2>
+<ul>
+<li><strong>No network access.</strong> There is no networking code at all: no analytics, no update check, no crash reporting, no cloud upload.</li>
+<li><strong>No Accessibility permission.</strong> Many menu bar screenshot tools ask for it so they can drive other apps. ScreenshotMenu doesn't need it, so it cannot control your computer.</li>
+<li><strong>No account, no licence key, no ads.</strong></li>
+<li><strong>No background capture.</strong> Nothing is taken unless you click a menu item.</li>
+</ul>
+
+<h2>What it asks for</h2>
+<p>Only <strong>Screen Recording</strong>, which macOS requires for any app that captures the screen, including Apple's own. The prompt mentions “screen and system audio” because one permission covers both. The app never records video or audio and has no code that could.</p>
+
+<h2>How you can verify it</h2>
+<ul>
+<li>The <a href="https://github.com/ScreenshotMenu/ScreenshotMenu">source code is on GitHub</a> under the MIT licence. The whole app is one file, <a href="https://github.com/ScreenshotMenu/ScreenshotMenu/blob/main/Sources/ScreenshotMenu/AppDelegate.swift"><code>AppDelegate.swift</code></a>, under 300 lines.</li>
+<li>Every capture runs <code>/usr/sbin/screencapture</code>, the screenshot tool that ships with macOS, with the right flags. Images come from Apple's own code path.</li>
+<li>Releases are signed with a Developer ID and notarised by Apple. You can also <a href="https://github.com/ScreenshotMenu/ScreenshotMenu#building">build it yourself</a> with <code>make install</code>.</li>
+</ul>
+
+<h2>Good for</h2>
+<ul>
+<li><strong>Companies with strict software policies</strong> that need a tool IT can review quickly.</li>
+<li><strong>People handling customer or health data</strong> who can't risk a tool phoning home.</li>
+<li><strong>Anyone</strong> who prefers fewer permissions on their Mac.</li>
+</ul>
+
+<h2>Questions</h2>
+    </div>
+    <div class="faq-list">
+      <details open>
+        <summary>Does ScreenshotMenu upload my screenshots?</summary>
+        <p>No. The app contains no network code. Captures go only to the file you choose or to the clipboard.</p>
+      </details>
+      <details>
+        <summary>Why doesn&#x27;t ScreenshotMenu need Accessibility access?</summary>
+        <p>It lets macOS&#x27;s own screencapture tool do the work, including handing images to Preview, so it never has to control other apps.</p>
+      </details>
+      <details>
+        <summary>Is ScreenshotMenu open source?</summary>
+        <p>Yes, under the MIT licence. The full source is on GitHub and the whole app is a single Swift file under 300 lines.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="related">
+  <div class="wrap">
+    <h2>Other ways to use ScreenshotMenu</h2>
+    <div class="uc-grid">
+      <a class="uc-card" href="/use-cases/silent-screenshot/">
+        <span class="who">Calls &amp; screen sharing</span>
+        <h3>Take a screenshot on Mac without the shutter sound</h3>
+        <p>Turn off the shutter sound for screenshots only, without muting the call you are in.</p>
+        <span class="more">Read more →</span>
+      </a>
+      <a class="uc-card" href="/use-cases/screenshot-without-keyboard/">
+        <span class="who">New Mac users</span>
+        <h3>How to take a screenshot on Mac without keyboard shortcuts</h3>
+        <p>Every capture mode in one menu, for anyone who can never remember ⌘⇧3, ⌘⇧4 and ⌘⇧5, or would rather use the trackpad.</p>
+        <span class="more">Read more →</span>
+      </a>
+      <a class="uc-card" href="/use-cases/annotate-screenshots/">
+        <span class="who">Feedback &amp; reviews</span>
+        <h3>Take a screenshot and mark it up in Preview</h3>
+        <p>Send every capture straight to Preview to add arrows, boxes and text with the markup tools already on your Mac.</p>
+        <span class="more">Read more →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="download">
+  <div class="wrap">
+    <div class="download">
+      <h2>Get ScreenshotMenu</h2>
+      <p>Free and open source. Download the signed, notarised DMG, drag it to Applications, and the camera icon appears in your menu bar.</p>
+      <a class="btn-primary" href="https://github.com/ScreenshotMenu/ScreenshotMenu/releases/latest/download/ScreenshotMenu.dmg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg> Download .dmg</a>
+      <div class="sub">macOS 13 Ventura or later · Apple Silicon &amp; Intel · MIT licence</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand"><img src="/assets/icon.png" alt="" width="26" height="26" /> ScreenshotMenu</div>
+        <p>A free, open-source screenshot menu for the macOS menu bar. Built on Apple's own <code>screencapture</code>.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#modes">All capture modes</a></li>
+          <li><a href="/#privacy">Privacy</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="https://github.com/ScreenshotMenu/ScreenshotMenu/releases/latest/download/ScreenshotMenu.dmg">Download</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Use cases</h4>
+        <ul>
+          <li><a href="/use-cases/screenshot-to-clipboard/">Bug reports &amp; chats</a></li>
+          <li><a href="/use-cases/timed-screenshot/">Docs &amp; tutorials</a></li>
+          <li><a href="/use-cases/silent-screenshot/">Calls &amp; screen sharing</a></li>
+          <li><a href="/use-cases/screenshot-without-keyboard/">New Mac users</a></li>
+          <li><a href="/use-cases/window-screenshot/">Designers &amp; writers</a></li>
+          <li><a href="/use-cases/annotate-screenshots/">Feedback &amp; reviews</a></li>
+          <li><a href="/use-cases/private-screenshot-app/">Privacy-minded &amp; IT</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Open source</h4>
+        <ul>
+          <li><a href="https://github.com/ScreenshotMenu/ScreenshotMenu">Source on GitHub</a></li>
+          <li><a href="https://github.com/ScreenshotMenu/ScreenshotMenu/releases">Releases</a></li>
+          <li><a href="https://github.com/ScreenshotMenu/ScreenshotMenu/issues">Report an issue</a></li>
+          <li><a href="https://github.com/ScreenshotMenu/ScreenshotMenu/blob/main/LICENSE">MIT licence</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 <a href="https://gt-d.cz">Global Tech Distribution s.r.o.</a></span>
+      <span>Made for macOS 13 Ventura and later · Apple Silicon &amp; Intel</span>
+    </div>
+  </div>
+</footer>
+<!-- /FOOTER -->
+
+</body>
+</html>

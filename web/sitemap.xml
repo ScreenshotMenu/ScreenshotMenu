@@ -2,8 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://screenshotmenu.nestimer.com/</loc>
-    <lastmod>2026-09-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://screenshotmenu.nestimer.com/use-cases/</loc>
+    <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://screenshotmenu.nestimer.com/use-cases/screenshot-to-clipboard/</loc>
+    <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://screenshotmenu.nestimer.com/use-cases/timed-screenshot/</loc>
+    <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://screenshotmenu.nestimer.com/use-cases/silent-screenshot/</loc>
+    <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://screenshotmenu.nestimer.com/use-cases/screenshot-without-keyboard/</loc>
+    <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://screenshotmenu.nestimer.com/use-cases/window-screenshot/</loc>
+    <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://screenshotmenu.nestimer.com/use-cases/annotate-screenshots/</loc>
+    <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://screenshotmenu.nestimer.com/use-cases/private-screenshot-app/</loc>
+    <lastmod>2026-10-06</lastmod>
   </url>
 </urlset>
