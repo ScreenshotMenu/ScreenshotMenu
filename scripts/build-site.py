@@ -13,6 +13,7 @@ import datetime
 import html
 import json
 import re
+import subprocess
 from pathlib import Path
 
 SITE = "https://screenshotmenu.nestimer.com"
@@ -453,6 +454,7 @@ def card(u):
 
 
 def use_case_page(u):
+    """The page, with @DATE@ where its modification date goes."""
     path = f"/use-cases/{u['slug']}/"
     faq_ld = {
         "@context": "https://schema.org",
@@ -468,7 +470,7 @@ def use_case_page(u):
         "headline": u["title"],
         "description": u["description"],
         "url": SITE + path,
-        "dateModified": TODAY,
+        "dateModified": "@DATE@",
         "about": {"@type": "SoftwareApplication", "name": "ScreenshotMenu", "url": SITE + "/"},
         "publisher": {"@type": "Organization", "name": COMPANY, "url": COMPANY_URL},
     }
@@ -585,20 +587,42 @@ def replace_block(text, name, block):
     return pattern.sub(lambda _: block, text)
 
 
-def sitemap():
-    paths = ["/", "/use-cases/"] + [f"/use-cases/{u['slug']}/" for u in USE_CASES]
+def committed(rel):
+    """The file as it is in git HEAD, or None if it is new."""
+    r = subprocess.run(["git", "show", f"HEAD:web/{rel}"], cwd=WEB.parent, capture_output=True, text=True)
+    return r.stdout if r.returncode == 0 else None
+
+
+def committed_lastmods():
+    old = committed("sitemap.xml") or ""
+    return {
+        loc[len(SITE):]: date
+        for loc, date in re.findall(r"<loc>(.*?)</loc>\s*<lastmod>(.*?)</lastmod>", old)
+    }
+
+
+def dated(rel, text, old_date):
+    """Fill in @DATE@: the page keeps its committed date unless its content changed.
+
+    Using today's date unconditionally would make every build a change and
+    tell search engines that untouched pages were updated.
+    """
+    prev = committed(rel)
+    if old_date and prev is not None and prev == text.replace("@DATE@", old_date):
+        return text.replace("@DATE@", old_date), old_date
+    return text.replace("@DATE@", TODAY), TODAY
+
+
+def sitemap(lastmods):
     urls = "\n".join(
-        f"  <url>\n    <loc>{SITE}{p}</loc>\n    <lastmod>{TODAY}</lastmod>\n  </url>" for p in paths
+        f"  <url>\n    <loc>{SITE}{p}</loc>\n    <lastmod>{d}</lastmod>\n  </url>" for p, d in lastmods.items()
     )
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n'
 
 
 def main():
-    for u in USE_CASES:
-        out = WEB / "use-cases" / u["slug"] / "index.html"
-        out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(use_case_page(u))
-    (WEB / "use-cases" / "index.html").write_text(use_case_index())
+    old = committed_lastmods()
+    lastmods = {}
 
     index = WEB / "index.html"
     text = index.read_text()
@@ -606,8 +630,17 @@ def main():
     text = replace_block(text, "FOOTER", FOOTER)
     text = replace_block(text, "USE-CASES", "<!-- USE-CASES -->\n" + "\n".join(card(u) for u in USE_CASES[:6]) + "\n<!-- /USE-CASES -->")
     index.write_text(text)
+    _, lastmods["/"] = dated("index.html", text, old.get("/"))
 
-    (WEB / "sitemap.xml").write_text(sitemap())
+    pages = [("/use-cases/", "use-cases/index.html", use_case_index())]
+    pages += [(f"/use-cases/{u['slug']}/", f"use-cases/{u['slug']}/index.html", use_case_page(u)) for u in USE_CASES]
+    for path, rel, page in pages:
+        page, lastmods[path] = dated(rel, page, old.get(path))
+        out = WEB / rel
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(page)
+
+    (WEB / "sitemap.xml").write_text(sitemap(lastmods))
     print(f"built {len(USE_CASES)} use-case pages, index, nav/footer and sitemap")
 
 
