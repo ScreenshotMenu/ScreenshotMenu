@@ -7,7 +7,8 @@
 # Files only on the server (the Google verification file, anything added by
 # hand) are left alone: nothing is ever deleted remotely. Each deploy first
 # tars the live site to /root/screenshotmenu-backup-<time>.tgz; the newest
-# ten are kept. Restore with:
+# ten are kept. Changed pages are then sent to IndexNow (Bing and friends).
+# Restore a backup with:
 #   ssh root@134.209.8.62 'tar xzf /root/screenshotmenu-backup-<time>.tgz -C /var/www'
 set -eu
 
@@ -31,6 +32,10 @@ if [ "${1:-}" = "-n" ]; then
     exit 0
 fi
 
+changed=$(mktemp)
+trap 'rm -f "$changed"' EXIT
+python3 scripts/indexnow.py changed "$changed"
+
 stamp=$(date +%Y%m%d-%H%M%S)
 ssh "$HOST" "tar czf /root/screenshotmenu-backup-$stamp.tgz -C /var/www screenshotmenu \
     && ls -1t /root/screenshotmenu-backup-*.tgz | tail -n +11 | xargs -r rm --"
@@ -51,4 +56,5 @@ for url in $(sed -n 's:.*<loc>\(.*\)</loc>.*:\1:p' web/sitemap.xml) \
     [ "$code" = 200 ] || { echo "FAIL $code $url" >&2; failed=1; }
 done
 [ "$failed" = 0 ] || exit 1
+python3 scripts/indexnow.py submit "$changed"
 echo "deployed $(git rev-parse --short HEAD) to $SITE"
