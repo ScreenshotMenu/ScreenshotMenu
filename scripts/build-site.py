@@ -21,6 +21,7 @@ DMG = "https://github.com/ScreenshotMenu/ScreenshotMenu/releases/latest/download
 REPO = "https://github.com/ScreenshotMenu/ScreenshotMenu"
 COMPANY = "Global Tech Distribution s.r.o."
 COMPANY_URL = "https://gt-d.cz"
+OG_ALT = "ScreenshotMenu open in the macOS menu bar, showing its nine capture modes"
 TODAY = datetime.date.today().isoformat()
 
 
@@ -411,12 +412,16 @@ def head(title, description, path, extra_ld):
 <meta property="og:url" content="{url}" />
 <meta property="og:title" content="{t}" />
 <meta property="og:description" content="{d}" />
-<meta property="og:image" content="{SITE}/assets/og.png" />
+<meta property="og:image" content="{SITE}/assets/social-card.png" />
+<meta property="og:image:width" content="1270" />
+<meta property="og:image:height" content="760" />
+<meta property="og:image:alt" content="{OG_ALT}" />
 <meta property="og:site_name" content="ScreenshotMenu" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="{t}" />
 <meta name="twitter:description" content="{d}" />
-<meta name="twitter:image" content="{SITE}/assets/og.png" />
+<meta name="twitter:image" content="{SITE}/assets/social-card.png" />
+<meta name="twitter:image:alt" content="{OG_ALT}" />
 {ld}
 </head>
 <body>
